@@ -3,3 +3,10 @@
   margin: 0 40px 0 40px;
 }
 
+.toeat {
+  width: 32%;
+  height: 33px;
+  margin: 10px auto;
+  border: 1px solid gray;
+  border-radius: 20px;
+}
