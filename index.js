@@ -44,7 +44,7 @@ app.post("/foods", function (req, res){
   // add new food to DB (array, really...)
   foods.push(newFood);
   // send a response with newly created object
-  res.send(newFood);
+  res.send(JSON.stringify(newFood));
 });
  
 app.delete("/foods/:id", function (req, res){

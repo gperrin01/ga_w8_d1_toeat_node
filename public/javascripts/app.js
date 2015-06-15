@@ -16,8 +16,8 @@ $(function() {
     var formData = $this.serialize();
     $.post('/foods', formData).
       done(function(data) {
-      // why did we send JSON on the get / but not Post?
-      addToEat(data.toeat, data.id);
+      var object = JSON.parse(data);
+      addToEat(object.toeat, object.id);
       })
   })
 
