@@ -21,13 +21,33 @@ $(function() {
       })
   })
 
+  $('#main_container').on('click', '.delete_button', function (){
+    event.preventDefault();
+    console.log('clicked on delete button');
+    var id = $(this).data('id');
+    $.ajax({
+      type: 'DELETE',
+      url: '/foods/'+id,
+      data: {id: id},
+      dataType: 'json'
+    }).done( function(data) {
+        // here data = the data-id of the list item to delete
+        removeFromList(data);
+      })
+  })
+
+
 // end of event listeners
 }) 
 
 function addToEat (toeat, index) {
   var $foods = $('#foods_container');
-  var $new = $("<div data-id='" +index + "'>" + toeat.name + " -> our verdict: " + toeat.yumminess + "<div>");
+  var $new = $("<div data-id='" +index + "'>" + toeat.name + " -> our verdict: " + toeat.yumminess + " <button class='delete_button' data-id='" +index+ "'> Delete </button><div>");
   $new.addClass('toeat');
-  // $new.data('id', id);
   $foods.append($new)
+}
+
+function removeFromList(id) {
+  var $foods = $('#foods_container');
+  $("div[data-id='" +id+ "']").remove();
 }

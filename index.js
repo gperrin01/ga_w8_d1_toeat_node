@@ -48,10 +48,11 @@ app.post("/foods", function (req, res){
 });
  
 app.delete("/foods/:id", function (req, res){
-  console.log("hitting delete route");
-  // finding an object with id = req.body.id out of the foods
-  // remove item from array
-  // render deleted object
+  console.log("hitting delete route ");
+  var index_to_delete = req.body.id - 1;
+  var removedItem = foods.splice(index_to_delete, 1)
+  res.send(req.body.id)
+  //  why render the whole object while all we need is the data-id to remove it from the list?
 });
  
 // listen on port 3000
