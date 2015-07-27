@@ -40,7 +40,7 @@ app.get("/foods", function (req, res){
 app.post("/foods", function (req, res){
   var newFood = req.body;
   //add a unique id
-  newFood.id = foods[foods.length - 1].id + 1;
+  foods.length >= 1 ? newFood.id = foods[foods.length - 1].id + 1 : newFood.id = 0;
   // add new food to DB (array, really...)
   foods.push(newFood);
   // send a response with newly created object
@@ -49,10 +49,16 @@ app.post("/foods", function (req, res){
  
 app.delete("/foods/:id", function (req, res){
   console.log("hitting delete route ");
-  var index_to_delete = req.body.id - 1;
-  var removedItem = foods.splice(index_to_delete, 1)
-  res.send(req.body.id)
-  //  why render the whole object while all we need is the data-id to remove it from the list?
+  var foodId = req.params.id;
+  // find the element in foods !! we don't trust the index position so we find the exact match
+  var item = foods.filter(function(obj) {
+    return obj.id === foodId;
+  })
+  console.log(item);
+  var index = foods.indexOf(item[0]) // because filter returned an array of 1
+  foods.splice(index, 1);
+  // good practice to render the deleted object
+  res.send(JSON.stringify(item))
 });
  
 // listen on port 3000

@@ -5,6 +5,7 @@
   <title>To Eat</title>
   <link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.1.1/mustache.js'></script>
   <script type="text/javascript" src="javascripts/app.js"></script>
 </head>
 <body>
@@ -21,7 +22,18 @@
     </form>
     
   </div>
- 
+
 </div> 
 </body>
+
+<script type="x-tmpl-mustache" id='new-toeat-template'>
+
+  <div class="toeat" data-id='{{ index }}'> 
+    <p>{{ toeat.name }} -> our verdict: {{ toeat.yumminess }}</p>
+    <button class="delete_button" data-id='{{index}}'>Delete</button>
+  </div>
+
+</script>
+
+
 </html>
